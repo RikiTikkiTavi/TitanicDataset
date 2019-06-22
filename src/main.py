@@ -7,4 +7,6 @@ data_prepared = Preparer() \
     .handle_categorical() \
     .build()
 
-Learner(data_prepared).check_svm()
+clf = Learner(data_prepared) \
+    .selection() \
+    .pick_best()
