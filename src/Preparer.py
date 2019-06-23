@@ -3,6 +3,7 @@ from __future__ import annotations
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
+from src.Explorer import Explorer
 from src.constants import src_train
 import matplotlib.pyplot as plt
 
@@ -13,12 +14,8 @@ class Preparer:
         self.data: __doc__ = pd.read_csv(src_train, index_col="PassengerId")
 
     def show_insights(self) -> Preparer:
-        print("----------- Info:")
-        print(self.data.info())
-        print("----------- Insights:")
-        print(self.data.describe())
-        print("----------- Missing values:")
-        print(len(self.data) - self.data.count())
+        Explorer(self.data) \
+            .basic_info()
         print("----------- Some of Tickets:")
         print(self.data["Ticket"].head())
         self.data.groupby(['Survived', 'Sex']).size().unstack().plot(kind='bar', stacked=True)
