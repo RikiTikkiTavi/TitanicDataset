@@ -15,7 +15,8 @@ class Preparer:
 
     def show_insights(self) -> Preparer:
         Explorer(self.data) \
-            .basic_info()
+            .basic_info() \
+            .profiling()
         print("----------- Some of Tickets:")
         print(self.data["Ticket"].head())
         self.data.groupby(['Survived', 'Sex']).size().unstack().plot(kind='bar', stacked=True)
