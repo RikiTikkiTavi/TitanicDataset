@@ -1,5 +1,6 @@
 import pandas_profiling
 from src.constants import src_generated
+import matplotlib.pyplot as plt
 
 
 class Explorer:
@@ -23,3 +24,9 @@ class Explorer:
         profile = pandas_profiling.ProfileReport(self.data)
         profile.to_file(output_file=src_generated + "Titanic data profiling.html")
         return self
+
+    def plotting(self):
+        self.data.groupby(['Survived', 'Sex']).size().unstack().plot(kind='bar', stacked=True)
+        self.data.groupby(['Embarked', 'Pclass']).size().unstack().plot(kind='bar', stacked=True)
+        self.data.plot(kind='scatter', x='Survived', y='Fare')
+        plt.show()
