@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from joblib import dump, load
+
 from sklearn.dummy import DummyClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import GradientBoostingClassifier
@@ -54,3 +56,7 @@ class Learner:
         print(self.grid_search.best_score_)
         print(self.grid_search.best_estimator_)
         return self.grid_search.best_estimator_
+
+    def save_best(self, path):
+        dump(self.grid_search.best_estimator_, path)
+        return self
