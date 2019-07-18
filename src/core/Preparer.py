@@ -10,8 +10,9 @@ from src.constants import src_train
 
 # noinspection PyMethodMayBeStatic
 class Preparer:
-    def __init__(self):
-        self.data: __doc__ = pd.read_csv(src_train, index_col="PassengerId")
+    def __init__(self, from_dict=None):
+        if from_dict is None:
+            self.data: __doc__ = pd.read_csv(src_train, index_col="PassengerId")
 
     def show_insights(self) -> Preparer:
         Explorer(self.data) \

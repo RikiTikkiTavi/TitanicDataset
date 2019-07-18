@@ -1,6 +1,6 @@
 from src.core.Preparer import Preparer
 from src.core.Learner import Learner
-from src.constants import src_models
+from src.constants import src_model
 
 data_prepared = Preparer() \
     .show_insights() \
@@ -13,5 +13,5 @@ data_prepared = Preparer() \
 
 clf = Learner(data_prepared) \
     .selection() \
-    .save_best(src_models+"titanic_model.joblib") \
+    .save_best(src_model) \
     .pick_best()
